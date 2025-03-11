@@ -1,4 +1,6 @@
 import { LibraryModel } from '../models/library-model.js'
+import { addBookValidator } from '../validators/library-validators.js';
+
 
 // validate information
 export const addBook = async (req, res, next) => {
