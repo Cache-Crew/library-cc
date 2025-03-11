@@ -1,0 +1,28 @@
+{
+  "name": "library-cc",
+  "version": "1.0.0",
+  "description": "Cache Crew API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "nodemon --env-file=.env ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cache-Crew/library-cc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cache-Crew/library-cc/issues"
+  },
+  "homepage": "https://github.com/Cache-Crew/library-cc#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "mongoose": "^8.12.1",
+    "nodemon": "^3.1.9"
+  }
+}
