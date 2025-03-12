@@ -1,4 +1,4 @@
-import { LibraryModel } from '../models/library-model.js'
+import { LibraryModel } from '../models/library-model.js';
 import { addBookValidator } from '../validators/library-validators.js';
 
 
@@ -34,11 +34,11 @@ export const getAllBooks = async (req, res, next) => {
 // get specific Books
 export const getBookById = async (req, res, next) => {
     try {
-        const uniqueBook = await BookModel.findById(req.params.id);
+        const uniqueBook = await LibraryModel.findById(req.params.id);
         if (!uniqueBook) {
             return res.status(404).json({ message: 'Book not found' });
         }
-        res.status(204).json(uniqueBook);
+        res.status(200).json(uniqueBook);
     } catch (error) {
         next(error)
     }
@@ -50,7 +50,7 @@ export const updateBook = async (req, res, next) => {
         if (!book) {
             return res.status(404).json({ message: 'Book not found' });
         }
-        res.status(204).json(book);
+        res.status(201).json(book);
     } catch (error) {
         next(error);
     }
@@ -58,7 +58,7 @@ export const updateBook = async (req, res, next) => {
     // delete book
 export const deleteBook = async(req, res, next) => {
     try {
-        const deletedbook = await Task.findByIdAndDelete(req.params.id);
+        const deletedbook = await LibraryModel.findByIdAndDelete(req.params.id);
         if (!deletedbook) {
             return res.status(404).json({ message: 'Book not found' });
         }
