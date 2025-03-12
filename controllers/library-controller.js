@@ -6,7 +6,7 @@ import { addBookValidator } from '../validators/library-validators.js';
 export const addBook = async (req, res, next) => {
     try {
         const { error, value } = addBookValidator.validate({...req.body,
-            image: req.file.filename
+            coverImage: req.file.filename
            }, { abortEarly: false });
         if (error) {
             return res.status(422).json(error);
