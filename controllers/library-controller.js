@@ -1,13 +1,11 @@
-import { LibraryModel } from '../models/library-model.js';
+import { LibraryModel } from '../models/library-model.js'
 import { addBookValidator } from '../validators/library-validators.js';
 
 
 // validate information
 export const addBook = async (req, res, next) => {
     try {
-        const { error, value } = addBookValidator.validate({...req.body,
-            coverImage: req.file.filename
-           }, { abortEarly: false });
+        const { error, value } = addBookValidator.validate(req.body, { abortEarly: false });
         if (error) {
             return res.status(422).json(error);
         }
@@ -23,7 +21,10 @@ export const addBook = async (req, res, next) => {
 // get all Books
 export const getAllBooks = async (req, res, next) => {
     try {
-        const allbooks = await LibraryModel.find();
+        const {filter = "{}", sort = "{}" } =  req.query;
+        const allbooks = await LibraryModel
+            .find(JSON.parse(filter))
+            .sort(JSON.parse(sort));
         res.status(200).json(allbooks);
     } catch (error) {
         next(error);
@@ -34,11 +35,11 @@ export const getAllBooks = async (req, res, next) => {
 // get specific Books
 export const getBookById = async (req, res, next) => {
     try {
-        const uniqueBook = await LibraryModel.findById(req.params.id);
+        const uniqueBook = await BookModel.findById(req.params.id);
         if (!uniqueBook) {
             return res.status(404).json({ message: 'Book not found' });
         }
-        res.status(200).json(uniqueBook);
+        res.status(204).json(uniqueBook);
     } catch (error) {
         next(error)
     }
@@ -50,7 +51,7 @@ export const updateBook = async (req, res, next) => {
         if (!book) {
             return res.status(404).json({ message: 'Book not found' });
         }
-        res.status(201).json(book);
+        res.status(204).json(book);
     } catch (error) {
         next(error);
     }
@@ -58,7 +59,7 @@ export const updateBook = async (req, res, next) => {
     // delete book
 export const deleteBook = async(req, res, next) => {
     try {
-        const deletedbook = await LibraryModel.findByIdAndDelete(req.params.id);
+        const deletedbook = await Task.findByIdAndDelete(req.params.id);
         if (!deletedbook) {
             return res.status(404).json({ message: 'Book not found' });
         }
