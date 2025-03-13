@@ -1,4 +1,5 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
+import normalize from "normalize-mongoose";
 
 const bookSchema = new Schema({
 title: { type: String, required: true, unique: true },
@@ -11,5 +12,7 @@ description: { type: String },
 publisher: { type: String }, 
 addedDate: { type: Date, default: Date.now },
 }, { timestamps: true });
+
+productSchema.plugin(normalize);
 
 export const LibraryModel = model ("Library", bookSchema)
