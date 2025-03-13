@@ -1,12 +1,10 @@
 import Joi from "joi";
 
 export const addBookValidator = Joi.object ({
-  title: Joi.string().required(),
+  bookTitle: Joi.string().required(),
   author: Joi.string().required(),
-  publishedYear: Joi.number().required(),
+  isbn: Joi.string().required(),
   genre: Joi.string().required(),
-  copiesAvailable: Joi.number().required(), // Number of copies in the library
   coverImage: Joi.string(), // URL to book cover image
   description: Joi.string(), // Brief summary of the book
-  publisher: Joi.string(), // Publisher name
 })
