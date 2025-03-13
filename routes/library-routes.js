@@ -4,7 +4,7 @@ import { remoteUpload } from "../middlewares/upload.js";
 
 const LibraryRouter = Router();
 
-LibraryRouter.post('/book',remoteUpload.single('coverImage'), addBook);
+LibraryRouter.post('/book', remoteUpload.single('image'), addBook);
 LibraryRouter.get('/book', getAllBooks);
 LibraryRouter.get('/book/:id', getBookById);
 LibraryRouter.patch('/book/:id', updateBook);
