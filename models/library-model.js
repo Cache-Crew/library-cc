@@ -13,6 +13,6 @@ publisher: { type: String },
 addedDate: { type: Date, default: Date.now },
 }, { timestamps: true });
 
-productSchema.plugin(normalize);
+bookSchema.plugin(normalize);
 
 export const LibraryModel = model ("Library", bookSchema)
